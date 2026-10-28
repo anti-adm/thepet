@@ -47,3 +47,8 @@ The `.openai/hosting.json` file is retained for the existing Sites project; GitH
 The full name appears in a two-line lockup: THE PET CREATOR / STARTER GUIDE. Ada's generated transparent face-and-paw logo is used in the header/footer, favicon and Apple touch icon; the original master and prompt are in `branding/`.
 
 Replaced emoji-prone Unicode arrows, hearts, search and star symbols with inline SVG, and checklist ticks with CSS strokes. Main reading copy is 16px, chapter titles 18px, FAQ controls 16px, footer links 14px and hero product label 14px (13px at the narrowest width). Decorative microcopy was removed from product mockups. Colors and spacing were adjusted for readability, with no horizontal overflow at 320/375/390/430/768/1024/1440px. Mobile chapter and icon sections and desktop header visually inspected; FAQ and checkout dialog verified. This is browser viewport QA, not a physical iPhone test.
+
+## Vultr deployment
+Primary domain: https://westieada.com/ (www redirects to the primary domain).
+Static releases live in `/srv/pet-guide/releases/`, selected by `/srv/pet-guide/current`. Existing Caddy serves the site with automatic HTTPS. Private future deliverables belong outside this web root in `/var/lib/pet-guide/private`.
+GitHub Pages is the previous deployment; do not use its publish commands for production updates. Stripe, transactional email and protected download endpoints are not implemented yet.
