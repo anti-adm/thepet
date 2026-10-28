@@ -6,7 +6,7 @@ function showNotice(title, message) {
 }
 // Phase 2 integration boundary: replace this handler with the real checkout request.
 function handlePurchaseIntent() {
-  showNotice('A new chapter is coming.', 'Checkout is not available yet. The $15 guide is being prepared for launch. No payment has been taken. Please check back when checkout opens.');
+  showNotice('Checkout opens soon', 'The guide costs $10. Checkout is not available yet, and no payment has been taken.');
 }
 document.querySelectorAll('[data-purchase]').forEach(button => button.addEventListener('click', handlePurchaseIntent));
 document.querySelectorAll('[data-info]').forEach(button => button.addEventListener('click', () => {
