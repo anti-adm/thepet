@@ -1,0 +1,21 @@
+{
+  "name": "pet-guide-checkout",
+  "version": "1.0.0",
+  "description": "Sandbox Stripe checkout for The Pet Creator Starter Guide",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/server.mjs",
+    "test:integration": "node server/smoke-test.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "stripe": "23.0.1"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=22.13.0"
+  }
+}

@@ -1,0 +1,21 @@
+[Unit]
+Description=Pet Guide sandbox checkout
+After=network-online.target
+Wants=network-online.target
+[Service]
+User=pet-guide
+Group=pet-guide
+WorkingDirectory=/opt/pet-guide
+EnvironmentFile=/etc/pet-guide.env
+ExecStart=/usr/bin/node /opt/pet-guide/server/server.mjs
+Restart=on-failure
+RestartSec=5
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/pet-guide
+MemoryMax=180M
+[Install]
+WantedBy=multi-user.target

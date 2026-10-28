@@ -4,9 +4,9 @@ function showNotice(title, message) {
   document.getElementById('dialog-body').textContent = message;
   dialog.showModal();
 }
-// Phase 2 integration boundary: replace this handler with the real checkout request.
+// Sandbox checkout; live mode is deliberately disabled on the server.
 function handlePurchaseIntent() {
-  showNotice('Checkout opens soon', 'The guide costs $10. Checkout is not available yet, and no payment has been taken.');
+  window.location.assign('/checkout.html');
 }
 document.querySelectorAll('[data-purchase]').forEach(button => button.addEventListener('click', handlePurchaseIntent));
 document.querySelectorAll('[data-info]').forEach(button => button.addEventListener('click', () => {

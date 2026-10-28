@@ -52,3 +52,12 @@ Replaced emoji-prone Unicode arrows, hearts, search and star symbols with inline
 Primary domain: https://westieada.com/ (www redirects to the primary domain).
 Static releases live in `/srv/pet-guide/releases/`, selected by `/srv/pet-guide/current`. Existing Caddy serves the site with automatic HTTPS. Private future deliverables belong outside this web root in `/var/lib/pet-guide/private`.
 GitHub Pages is the previous deployment; do not use its publish commands for production updates. Stripe, transactional email and protected download endpoints are not implemented yet.
+
+## Sandbox checkout (2026-10-29)
+`/checkout.html` uses Stripe Payment Element with the Checkout Sessions API (`ui_mode: elements`, API version `2026-09-30.endive`). `/api/checkout` creates a fixed-price USD 10 session. The server refuses live keys or a live/recurring/wrong-amount Price. Secrets are in `/etc/pet-guide.env` (root-only), never the repository. The service runs as `pet-guide` on loopback port 8791 behind Caddy, with SQLite order/event storage outside the web root.
+
+`POST /api/stripe/webhook` accepts signed snapshot events. Subscribe to `checkout.session.completed`, `checkout.session.async_payment_succeeded`, `checkout.session.async_payment_failed`, `checkout.session.expired`. Set `STRIPE_WEBHOOK_SECRET` in the server environment file and restart `pet-guide` to enable handling. Until then the endpoint returns 503, allowing Stripe retries. No fulfillment is performed. `/api/order` retrieves the current Stripe status for the opaque HttpOnly order cookie; it does not turn a browser redirect into a fulfilled order.
+
+Validation: sandbox card payment completed through the custom UI, confirmed server-side as `paid`, USD 1000 cents. Signed-event, duplicate-event, tampered-payload, invalid-signature, cross-origin, invalid-input and missing-order tests passed using an isolated temporary database. The browser return navigation was blocked by stale local DNS; the actual order-status API was verified independently. Genuine Stripe webhook delivery remains to be verified after configuring its signing secret. PDF, email, live purchase consent, legal terms, taxes, refunds/disputes and production hardening remain future steps.
+
+Run server smoke tests with the sandbox environment loaded: `node --env-file=/etc/pet-guide.env server/smoke-test.mjs`. They start a temporary loopback service on port 8792 and clean up its database.
