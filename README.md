@@ -27,3 +27,18 @@ Update QA: JS syntax checks passed. Browser checked 320, 390, 768 and 1440px wit
 
 ## Price and copy update
 Price is now $10 in both offers, SEO/social metadata and the pending-checkout dialog. Removed repeated instant-access captions, the illustrative-preview caption, generic section eyebrows, decorative slogans, and filler photo/footer text. Purchase buttons consistently say GET THE GUIDE. Core product details, the FAQ and honest pending-checkout behavior remain. Product art remains an illustrative mockup, not an actual delivered file.
+
+## GitHub Pages
+Public website: https://anti-adm.github.io/thepet/
+Source repository: https://github.com/anti-adm/thepet
+
+The `main` branch contains all source, assets and project documentation. GitHub Pages serves the root of `gh-pages`, generated from `dist/` without a build step.
+
+To publish subsequent changes after committing them:
+```sh
+git push github main
+git subtree split --prefix dist -b pages-release
+git push github pages-release:gh-pages
+git branch -D pages-release
+```
+The `.openai/hosting.json` file is retained for the existing Sites project; GitHub Pages does not use it.
