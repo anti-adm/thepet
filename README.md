@@ -42,3 +42,8 @@ git push github pages-release:gh-pages
 git branch -D pages-release
 ```
 The `.openai/hosting.json` file is retained for the existing Sites project; GitHub Pages does not use it.
+
+## Mobile readability and identity update
+The full name appears in a two-line lockup: THE PET CREATOR / STARTER GUIDE. Ada's generated transparent face-and-paw logo is used in the header/footer, favicon and Apple touch icon; the original master and prompt are in `branding/`.
+
+Replaced emoji-prone Unicode arrows, hearts, search and star symbols with inline SVG, and checklist ticks with CSS strokes. Main reading copy is 16px, chapter titles 18px, FAQ controls 16px, footer links 14px and hero product label 14px (13px at the narrowest width). Decorative microcopy was removed from product mockups. Colors and spacing were adjusted for readability, with no horizontal overflow at 320/375/390/430/768/1024/1440px. Mobile chapter and icon sections and desktop header visually inspected; FAQ and checkout dialog verified. This is browser viewport QA, not a physical iPhone test.
